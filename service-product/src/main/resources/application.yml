@@ -1,0 +1,15 @@
+server:
+  port: 6661
+
+spring:
+  application:
+    name: SERVICE-PRODUCT
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register-health-check: true
+        service-name: ${spring.application.name}
+        heartbeat:
+          enabled: true

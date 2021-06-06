@@ -1,0 +1,42 @@
+server:
+  port: 9996
+
+spring:
+  application:
+    name: CLOUD-GATEWAY
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+    gateway:
+      routes:
+        - id: category_router
+          #          uri: http://localhost:7771
+          uri: lb://SERVICE-CATEGORY
+          predicates:
+            - Path=/category/**
+          filters:
+            - StripPrefix=1
+        - id: product_router
+          #          uri: http://localhost:6661
+          uri: lb://SERVICE-PRODUCT
+          predicates:
+            - Path=/p/**
+            - After=2021-05-24T21:26:46.781+08:00[Asia/Shanghai]
+            - Before=2021-05-24T21:26:46.781+08:00[Asia/Shanghai]
+            - Between=2021-05-24T21:26:46.781+08:00[Asia/Shanghai], 2021-05-24T21:26:46.781+08:00[Asia/Shanghai]
+            - Cookie=name,scq
+            - Cookie=school,[A-Za-z0-9]+
+            - Header=X-Request-Id,\d+
+            - Method=GET
+          filters:
+            - AddRequestHeader=User-Name, scq
+            - AddRequestParameter=color, blue
+            - AddResponseHeader=X-Response-Red, yellow
+            - PrefixPath=/product
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

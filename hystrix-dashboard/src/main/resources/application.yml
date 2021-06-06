@@ -1,0 +1,20 @@
+server:
+  port: 9997
+
+spring:
+  application:
+    name: CLOUD-HYSTRIX-DASHBOARD
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "hystrix.stream"
+
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "localhost"

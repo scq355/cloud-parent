@@ -1,0 +1,19 @@
+server:
+  port: 8881
+
+spring:
+  application:
+    name: SERVICE-USER
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register-health-check: true
+        service-name: ${spring.application.name}
+        heartbeat:
+          enabled: true
+
+SERVICE-ORDER:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

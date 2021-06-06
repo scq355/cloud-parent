@@ -1,0 +1,27 @@
+
+spring:
+  application:
+    name: CONNFIG-CLIENT
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+        heartbeat:
+          enabled: true
+    config:
+      discovery:
+        service-id: CONFIG-SERVER
+        enabled: true
+      label: master
+      name: configclient
+      profile: test
+
+management:
+  endpoints:
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: "*"

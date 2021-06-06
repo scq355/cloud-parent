@@ -1,0 +1,15 @@
+
+spring:
+  application:
+    name: CONNFIG-CLIENT
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+    config:
+      discovery:
+        service-id: CONFIG-SERVER
+        enabled: true
+      label: master
+      name: configclient
+      profile: dev

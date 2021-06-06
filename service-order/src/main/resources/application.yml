@@ -1,0 +1,15 @@
+server:
+  port: 8882
+
+spring:
+  application:
+    name: SERVICE-ORDER
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register-health-check: true
+        service-name: ${spring.application.name}
+        heartbeat:
+          enabled: true

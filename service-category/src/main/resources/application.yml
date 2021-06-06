@@ -1,0 +1,35 @@
+server:
+  port: 7771
+
+spring:
+  application:
+    name: SERVICE-CATEGORY
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register-health-check: true
+        service-name: ${spring.application.name}
+        heartbeat:
+          enabled: true
+
+feign:
+  client:
+    config:
+      SERVICE-PRODUCT:
+        connect-timeout: 5000
+        read-timeout: 5000
+        loggerLevel: full
+      SERVICE-ORDER:
+        loggerLevel: none
+      default:
+        connect-timeout: 5000
+        read-timeout: 5000
+
+logging:
+  level:
+    com:
+      cloud:
+        category:
+          feignclient: debug

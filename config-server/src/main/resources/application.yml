@@ -1,0 +1,21 @@
+server:
+  port: 7788
+
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+        heartbeat:
+          enabled: true
+    config:
+      server:
+        git:
+          uri: https://gitee.com/scq355/config.git
+          default-label: master
+          username: scq355
+          password: scq355545454
